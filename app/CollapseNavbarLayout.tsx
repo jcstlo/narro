@@ -4,7 +4,7 @@ import { AppShell, Group, Burger, Skeleton } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Link } from "@prisma/client";
 
-export async function CollapseNavbarLayout({
+export function CollapseNavbarLayout({
   allLinks,
 }: {
   allLinks: Link[],
