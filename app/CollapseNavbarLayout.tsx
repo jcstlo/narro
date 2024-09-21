@@ -2,8 +2,13 @@
 
 import { AppShell, Group, Burger, Skeleton } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import { Link } from "@prisma/client";
 
-export function CollapseNavbarLayout() {
+export async function CollapseNavbarLayout({
+  allLinks,
+}: {
+  allLinks: Link[],
+}) {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure(true);
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
 
@@ -30,6 +35,10 @@ export function CollapseNavbarLayout() {
           <Skeleton key={index} h={28} mt="sm" animate={false} />
         ))}
     </AppShell.Navbar>
-    <AppShell.Main>Main</AppShell.Main>
+    <AppShell.Main>
+      {allLinks.map((link) => {
+        return <p>{link.title}</p>
+      })}
+    </AppShell.Main>
   </AppShell>
 }

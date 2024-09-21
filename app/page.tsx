@@ -1,7 +1,12 @@
 import { CollapseNavbarLayout } from "./CollapseNavbarLayout";
+import { getAllLinks } from "./queries";
 
-export default function Home() {
+export default async function Home() {
+  const allLinks = await getAllLinks();
+
   return (
-    <CollapseNavbarLayout></CollapseNavbarLayout>
+    <CollapseNavbarLayout
+      allLinks={allLinks}
+    />
   );
 }
