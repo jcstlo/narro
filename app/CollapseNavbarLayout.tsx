@@ -2,15 +2,14 @@
 
 import { AppShell, Group, Burger, Skeleton } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { Link } from "@prisma/client";
+import { useState } from "react";
+import { LinksList } from "./LinksList";
 
-export function CollapseNavbarLayout({
-  allLinks,
-}: {
-  allLinks: Link[],
-}) {
+export function CollapseNavbarLayout() {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure(true);
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
+
+  const [myState, setState] = useState(false);
 
   return <AppShell
     header={{ height: 60 }}
@@ -29,6 +28,11 @@ export function CollapseNavbarLayout({
     </AppShell.Header>
     <AppShell.Navbar p="md">
       Navbar
+      <button
+        onClick={() => setState(!myState)}
+      >
+        State = {`${myState}`}
+      </button>
       {Array(15)
         .fill(0)
         .map((_, index) => (
@@ -36,9 +40,8 @@ export function CollapseNavbarLayout({
         ))}
     </AppShell.Navbar>
     <AppShell.Main>
-      {allLinks.map((link) => {
-        return <p>{link.title}</p>
-      })}
+      Hello
+      <LinksList test={myState}/>
     </AppShell.Main>
   </AppShell>
 }
