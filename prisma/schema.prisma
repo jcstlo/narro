@@ -18,4 +18,12 @@ model Link {
   title     String
   url       String
   createdAt DateTime @default(now())
+  spaces    Space[]
+}
+
+model Space {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  links     Link[]
 }
