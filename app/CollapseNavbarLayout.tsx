@@ -4,6 +4,7 @@ import { AppShell, Group, Burger, Skeleton } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useState } from "react";
 import { LinksList } from "./LinksList";
+import { SpacesButtons } from "./SpacesButtons";
 
 export function CollapseNavbarLayout() {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure(true);
@@ -24,6 +25,7 @@ export function CollapseNavbarLayout() {
       <Group h="100%" px="md">
         <Burger opened={mobileOpened} onClick={toggleMobile} hiddenFrom="sm" size="sm" />
         <Burger opened={desktopOpened} onClick={toggleDesktop} visibleFrom="sm" size="sm" />
+        <SpacesButtons/>
       </Group>
     </AppShell.Header>
     <AppShell.Navbar p="md">
