@@ -1,14 +1,14 @@
 "use client";
 
-import { AppShell, Group, Burger, Skeleton } from "@mantine/core";
+import React from "react";
 import { useDisclosure } from "@mantine/hooks";
-import { LinksList } from "./LinksList";
-import { SpacesButtons } from "./SpacesButtons";
+import { AppShell, Group, Burger, Skeleton } from "@mantine/core";
+import { SpacesButtons } from "@/app/SpacesButtons";
 
-export function CollapseNavbarLayout({
-  currentSpaceId,
+export default function Layout({
+  children, // will be a page or nested layout
 }: {
-  currentSpaceId: number,
+  children: React.ReactNode
 }) {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure(false);
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
@@ -38,8 +38,7 @@ export function CollapseNavbarLayout({
         ))}
     </AppShell.Navbar>
     <AppShell.Main>
-      Hello
-      <LinksList currentSpaceId={currentSpaceId}/>
+      {children}
     </AppShell.Main>
   </AppShell>
 }

@@ -1,4 +1,4 @@
-import { CollapseNavbarLayout } from "@/app/CollapseNavbarLayout";
+import { LinksList } from "@/app/LinksList";
 
 export default async function Page({
   params
@@ -10,8 +10,6 @@ export default async function Page({
   const currentSpaceId = Number(params.spaceButtonId);
 
   return (
-    <CollapseNavbarLayout
-      currentSpaceId={currentSpaceId}
-    />
+    <LinksList currentSpaceId={currentSpaceId}/>
   );
 }
