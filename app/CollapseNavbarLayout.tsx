@@ -2,15 +2,16 @@
 
 import { AppShell, Group, Burger, Skeleton } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { useState } from "react";
 import { LinksList } from "./LinksList";
 import { SpacesButtons } from "./SpacesButtons";
 
-export function CollapseNavbarLayout() {
-  const [mobileOpened, { toggle: toggleMobile }] = useDisclosure(true);
+export function CollapseNavbarLayout({
+  currentSpaceId,
+}: {
+  currentSpaceId: number,
+}) {
+  const [mobileOpened, { toggle: toggleMobile }] = useDisclosure(false);
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
-
-  const [myState, setState] = useState(false);
 
   return <AppShell
     header={{ height: 60 }}
@@ -30,11 +31,6 @@ export function CollapseNavbarLayout() {
     </AppShell.Header>
     <AppShell.Navbar p="md">
       Navbar
-      <button
-        onClick={() => setState(!myState)}
-      >
-        State = {`${myState}`}
-      </button>
       {Array(15)
         .fill(0)
         .map((_, index) => (
@@ -43,7 +39,7 @@ export function CollapseNavbarLayout() {
     </AppShell.Navbar>
     <AppShell.Main>
       Hello
-      <LinksList test={myState}/>
+      <LinksList currentSpaceId={currentSpaceId}/>
     </AppShell.Main>
   </AppShell>
 }

@@ -2,27 +2,23 @@ import prisma from "../../../lib/db";
 
 export async function POST(request: Request) {
   const queryParams = await request.json();
-  const testBool = queryParams.testJSONValue;
+  const currentSpaceId = Number(queryParams.currentSpaceId);
 
-  let testURL = "reddit.com";
-  if (testBool) {
-    testURL = "youtube.com";
-  }
+  let allLinks;
 
-  let testSpaceID = 5;
-  if (testBool) {
-    testSpaceID = 6;
-  }
-
-  const allLinks = await prisma.link.findMany({
-    where: {
-      spaces: {
-        some: {
-          id: testSpaceID,
+  if (currentSpaceId === 0) {
+    allLinks = await prisma.link.findMany();
+  } else {
+    allLinks = await prisma.link.findMany({
+      where: {
+        spaces: {
+          some: {
+            id: currentSpaceId,
+          }
         }
-      }
-    },
-  });
+      },
+    });
+  }
 
   return new Response(JSON.stringify(allLinks));
 }

@@ -2,14 +2,14 @@ import { Link } from "@prisma/client";
 import { useEffect, useState } from "react"
 
 export function LinksList({
-  test
+  currentSpaceId
 }: {
-  test: boolean
+  currentSpaceId: number
 }) {
   const [linksArray, setLinksArray] = useState([] as Link[]);
 
   useEffect(() => {
-      const obj = { testJSONValue: test, };
+      const obj = { currentSpaceId: currentSpaceId, };
       fetch("/api/query/links", {
         method: "POST",
         body: JSON.stringify(obj),
@@ -18,7 +18,7 @@ export function LinksList({
         .then((data) => {
           setLinksArray(data);
         })
-  }, [test])
+  }, [])
 
   return (
     <div>
