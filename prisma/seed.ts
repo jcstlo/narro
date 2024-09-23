@@ -61,6 +61,54 @@ async function main() {
     return new_link;
   });
 
+  // create 2 new groups per space
+  const newGroup1SpaceA = await prisma.group.create({
+    data: {
+      name: "Group A1",
+      spaceId: newSpaceA.id,
+      links: {
+        connect: [
+          { id: (await newLinksSpaceA[0]).id },
+          { id: (await newLinksSpaceA[1]).id },
+        ]
+      }
+    }
+  })
+  const newGroup2SpaceA = await prisma.group.create({
+    data: {
+      name: "Group A2",
+      spaceId: newSpaceA.id,
+      links: {
+        connect: [
+          { id: (await newLinksSpaceA[2]).id },
+        ]
+      }
+    }
+  })
+  const newGroup1SpaceB = await prisma.group.create({
+    data: {
+      name: "Group B1",
+      spaceId: newSpaceB.id,
+      links: {
+        connect: [
+          { id: (await newLinksSpaceB[0]).id },
+          { id: (await newLinksSpaceB[1]).id },
+        ]
+      }
+    }
+  })
+  const newGroup2SpaceB = await prisma.group.create({
+    data: {
+      name: "Group B2",
+      spaceId: newSpaceB.id,
+      links: {
+        connect: [
+          { id: (await newLinksSpaceB[2]).id },
+        ]
+      }
+    }
+  })
+
   console.log(newSpaceA);
   console.log(newSpaceB);
 
@@ -73,6 +121,9 @@ async function main() {
     const link = await new_link;
     console.log(link);
   });
+
+  console.log(newGroup2SpaceA);
+  console.log(newGroup2SpaceB);
 }
 
 main()
