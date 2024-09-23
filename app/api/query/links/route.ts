@@ -1,4 +1,4 @@
-import prisma from "../../lib/db";
+import prisma from "../../../lib/db";
 
 export async function POST(request: Request) {
   const queryParams = await request.json();
@@ -9,9 +9,18 @@ export async function POST(request: Request) {
     testURL = "youtube.com";
   }
 
+  let testSpaceID = 5;
+  if (testBool) {
+    testSpaceID = 6;
+  }
+
   const allLinks = await prisma.link.findMany({
     where: {
-      url: testURL,
+      spaces: {
+        some: {
+          id: testSpaceID,
+        }
+      }
     },
   });
 

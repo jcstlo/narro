@@ -10,7 +10,7 @@ export function LinksList({
 
   useEffect(() => {
       const obj = { testJSONValue: test, };
-      fetch("/api/query", {
+      fetch("/api/query/links", {
         method: "POST",
         body: JSON.stringify(obj),
       })
@@ -23,7 +23,7 @@ export function LinksList({
   return (
     <div>
         {linksArray.map((link) => {
-          return <p key={link.id}>{link.url}</p>
+          return <p key={link.id}>{link.id}</p>
         })}
     </div>
   )
