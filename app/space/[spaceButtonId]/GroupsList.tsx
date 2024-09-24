@@ -1,6 +1,6 @@
 "use client";
 
-import { Skeleton } from "@mantine/core"
+import { Checkbox } from "@mantine/core"
 import { useEffect, Dispatch, SetStateAction } from "react";
 import { currentGroupsState } from "./page";
 import { Group } from "@prisma/client";
@@ -27,10 +27,12 @@ export function GroupsList({
   }, [])
 
   return (
-    <div>
+    <Checkbox.Group
+      label="Groups"
+    >
       {currentGroups.groupsList.map((group) => {
-        return <p>{group.name}</p>
+        return <Checkbox className="mb-1" value={String(group.id)} label={group.name} />
       })}
-    </div>
+    </Checkbox.Group>
   )
 }
