@@ -1,7 +1,17 @@
-import { LinksList } from "@/app/LinksList";
-import { AppShellMain, AppShellNavbar, Skeleton } from "@mantine/core";
+"use client";
 
-export default async function Page({
+import { LinksList } from "@/app/LinksList";
+import { AppShellMain, AppShellNavbar } from "@mantine/core";
+import { useState } from "react";
+import { GroupsList } from "./GroupsList";
+import { Group } from "@prisma/client";
+
+export interface currentGroupsState {
+  allGroups: boolean;
+  groupsList: Group[];
+}
+
+export default function Page({
   params
 }: {
   params: {
@@ -10,15 +20,20 @@ export default async function Page({
 }) {
   const currentSpaceId = Number(params.spaceButtonId);
 
+  const defaultGroupsState: currentGroupsState = {
+    allGroups: true,
+    groupsList: []
+  }
+  const [currentGroups, setCurrentGroups] = useState(defaultGroupsState);
+
   return (
     <div>
     <AppShellNavbar p="md">
-      Navbar
-      {Array(15)
-        .fill(0)
-        .map((_, index) => (
-          <Skeleton key={index} h={28} mt="sm" animate={false} />
-        ))}
+      <GroupsList
+        currentSpaceId={currentSpaceId}
+        currentGroups={currentGroups}
+        setCurrentGroups={setCurrentGroups}
+      />
     </AppShellNavbar>
     <AppShellMain>
       <LinksList currentSpaceId={currentSpaceId}/>
