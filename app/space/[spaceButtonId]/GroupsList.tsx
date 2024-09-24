@@ -1,38 +1,45 @@
 "use client";
 
 import { Checkbox } from "@mantine/core"
-import { useEffect, Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { currentGroupsState } from "./page";
-import { Group } from "@prisma/client";
 
 export function GroupsList({
-  currentSpaceId,
   currentGroups,
-  setCurrentGroups,
+  setCurrentGroups
 }: {
-  currentSpaceId: number,
   currentGroups: currentGroupsState,
   setCurrentGroups: Dispatch<SetStateAction<currentGroupsState>>,
 }) {
-  useEffect(() => {
-    const obj = { currentSpaceId: currentSpaceId, };
-    fetch("/api/query/groups", {
-      method: "POST",
-      body: JSON.stringify(obj),
-    })
-      .then((res) => res.json())
-      .then((data: Group[]) => {
-        setCurrentGroups({ groupsList: data, allGroups: true });
-      })
-  }, [])
+
+  function updateGroupsList(groupId: number, checked: boolean) {
+    const copyCurrentGroups = [...currentGroups.groupsList];
+    for (let i = 0; i < copyCurrentGroups.length; i++) {
+      if (groupId === copyCurrentGroups[i].id) {
+        copyCurrentGroups[i].checked = checked;
+        break;
+      }
+    }
+    setCurrentGroups({ groupsList: copyCurrentGroups });
+    console.log(copyCurrentGroups);
+  }
+
+  const checkboxItems = currentGroups.groupsList.map((group) => {
+    return <Checkbox
+      className="mb-1"
+      value={String(group.id)}
+      label={group.name}
+      onChange={(event) => {
+        updateGroupsList(group.id, event.currentTarget.checked);
+      }}
+    />
+  })
 
   return (
     <Checkbox.Group
       label="Groups"
     >
-      {currentGroups.groupsList.map((group) => {
-        return <Checkbox className="mb-1" value={String(group.id)} label={group.name} />
-      })}
+      {checkboxItems}
     </Checkbox.Group>
   )
 }
