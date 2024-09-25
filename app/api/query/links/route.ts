@@ -2,7 +2,6 @@ import prisma from "../../../lib/db";
 
 export async function POST(request: Request) {
   const queryParams = await request.json();
-  const currentSpaceId = Number(queryParams.currentSpaceId);
   const groups = queryParams.groups as number[];
 
   const groupOrQuery = groups.map((groupId) => {
@@ -19,6 +18,9 @@ export async function POST(request: Request) {
     where: {
       OR: groupOrQuery,
     },
+    orderBy: {
+      createdAt: 'desc',
+    }
   });
 
   return new Response(JSON.stringify(allLinks));
