@@ -29,7 +29,6 @@ export function GroupsList({
       }
     }
     setCurrentGroups({ groupsList: copyCurrentGroups });
-    console.log(copyCurrentGroups);
   }
 
   const checkboxItems = currentGroups.groupsList.map((group) => {

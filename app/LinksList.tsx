@@ -2,16 +2,26 @@
 
 import { Link } from "@prisma/client";
 import { useEffect, useState } from "react"
+import { currentGroupsState } from "./space/[spaceButtonId]/page";
 
 export function LinksList({
-  currentSpaceId
+  currentGroups
 }: {
-  currentSpaceId: number
+  currentGroups: currentGroupsState
 }) {
   const [linksArray, setLinksArray] = useState([] as Link[]);
 
+  const groupIds: number[] = [];
+  for (let i = 0; i < currentGroups.groupsList.length; i++) {
+    if (currentGroups.groupsList[i].checked) {
+      groupIds.push(currentGroups.groupsList[i].id);
+    }
+  }
+
   useEffect(() => {
-      const obj = { currentSpaceId: currentSpaceId, };
+      const obj = {
+        groups: groupIds,
+      };
       fetch("/api/query/links", {
         method: "POST",
         body: JSON.stringify(obj),
@@ -20,7 +30,7 @@ export function LinksList({
         .then((data) => {
           setLinksArray(data);
         })
-  }, [])
+  }, [currentGroups])
 
   return (
     <div>

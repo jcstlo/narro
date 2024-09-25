@@ -3,22 +3,23 @@ import prisma from "../../../lib/db";
 export async function POST(request: Request) {
   const queryParams = await request.json();
   const currentSpaceId = Number(queryParams.currentSpaceId);
+  const groups = queryParams.groups as number[];
 
-  let allLinks;
-
-  if (currentSpaceId === 0) {
-    allLinks = await prisma.link.findMany();
-  } else {
-    allLinks = await prisma.link.findMany({
-      where: {
-        spaces: {
-          some: {
-            id: currentSpaceId,
-          }
+  const groupOrQuery = groups.map((groupId) => {
+    return {
+      groups: {
+        some: {
+          id: groupId,
         }
-      },
-    });
-  }
+      }
+    }
+  })
+
+  let allLinks = await prisma.link.findMany({
+    where: {
+      OR: groupOrQuery,
+    },
+  });
 
   return new Response(JSON.stringify(allLinks));
 }

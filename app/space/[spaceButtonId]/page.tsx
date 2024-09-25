@@ -58,7 +58,7 @@ export default function Page({
       />
     </AppShellNavbar>
     <AppShellMain>
-      <LinksList currentSpaceId={currentSpaceId}/>
+      <LinksList currentGroups={currentGroups}/>
     </AppShellMain>
     </div>
   );
