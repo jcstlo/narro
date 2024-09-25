@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useDisclosure } from "@mantine/hooks";
-import { AppShell, Group, Burger, Skeleton } from "@mantine/core";
+import { AppShell, Group, Burger } from "@mantine/core";
 import { SpacesButtons } from "@/app/SpacesButtons";
 
 export default function Layout({
@@ -20,7 +20,6 @@ export default function Layout({
       breakpoint: 'sm',
       collapsed: { mobile: !mobileOpened, desktop: !desktopOpened },
     }}
-    padding="md"
   >
     <AppShell.Header>
       <Group h="100%" px="md">
