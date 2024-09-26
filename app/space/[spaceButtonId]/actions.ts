@@ -1,15 +1,35 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import prisma from "@/app/lib/db";
 
 export async function createBookmark(formData: FormData) {
   const newBookmarkFields = {
-    name: formData.get('linkname'),
-    url: formData.get('linkurl'),
-    spaceId: formData.get('spaceId'),
-    selectedGroups: formData.getAll('selectedGroups'),
+    name: formData.get('linkname') as string,
+    url: formData.get('linkurl') as string,
+    spaceId: formData.get('spaceId') as string,
+    selectedGroups: formData.getAll('selectedGroups') as string[],
   }
 
-  console.log(newBookmarkFields);
-  revalidatePath(`/space/${newBookmarkFields.spaceId}`)
+  let connectGroups = {};
+  if (newBookmarkFields.selectedGroups.length > 0) {
+    const groupsArray = newBookmarkFields.selectedGroups.map((group) => {
+      return { id: Number(group) }
+    })
+    connectGroups = {
+      connect: groupsArray,
+    }
+  }
+
+  const newBookmark = await prisma.link.create({
+    data: {
+      title: newBookmarkFields.name,
+      url: newBookmarkFields.url,
+      spaces: {
+        connect: {
+          id: Number(newBookmarkFields.spaceId),
+        }
+      },
+      groups: connectGroups,
+    }
+  })
 }

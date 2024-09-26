@@ -47,7 +47,7 @@ export default function Page({
             name: group.name,
             createdAt: group.createdAt,
             spaceId: group.spaceId,
-            checked: false,
+            checked: true,
           }
         })
         setCurrentGroups({ groupsList: dataWithChecked });
@@ -109,14 +109,16 @@ export default function Page({
             <button
             type="submit"
             className="border border-black px-2 py-1 ml-1 mb-2"
-            onClick={closeModal}
+            onClick={() => {
+              closeModal();
+            }}
             >
               Create
             </button>
           </form>
         </Modal>
       </div>
-      <LinksList currentGroups={currentGroups}/>
+      <LinksList currentGroups={currentGroups} />
     </AppShellMain>
     </div>
   );
