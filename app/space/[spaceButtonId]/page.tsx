@@ -30,6 +30,7 @@ export default function Page({
 
   const defaultGroupsState: currentGroupsState = { groupsList: [] }
   const [currentGroups, setCurrentGroups] = useState(defaultGroupsState);
+  const [refreshButton, setRefreshButton] = useState(false);
 
   const [openedModal, { open: openModal, close: closeModal }] = useDisclosure(false);
 
@@ -66,7 +67,7 @@ export default function Page({
   let addBookmarkButtonForm: JSX.Element = <></>;
   if (currentSpaceId !== 0) {
     addBookmarkButtonForm = (
-      <div className="border-b">
+      <>
         <button
           className="border border-black px-2 py-1"
           onClick={openModal}
@@ -111,9 +112,20 @@ export default function Page({
             </button>
           </form>
         </Modal>
-      </div>
+      </>
     )
   }
+
+  const refreshButtonJSX = (
+    <button
+      className="border border-black px-2 py-1 ml-2"
+      onClick={() => {
+        setRefreshButton(!refreshButton);
+      }}
+    >
+      Refresh
+    </button>
+  )
 
   return (
     <div>
@@ -124,8 +136,11 @@ export default function Page({
       />
     </AppShellNavbar>
     <AppShellMain>
-      {addBookmarkButtonForm}
-      <LinksList currentGroups={currentGroups} />
+      <div className="border-b">
+        {addBookmarkButtonForm}
+        {refreshButtonJSX}
+      </div>
+      <LinksList currentGroups={currentGroups} refreshButton={refreshButton}/>
     </AppShellMain>
     </div>
   );

@@ -5,9 +5,11 @@ import { useEffect, useState } from "react"
 import { currentGroupsState } from "./space/[spaceButtonId]/page";
 
 export function LinksList({
-  currentGroups
+  currentGroups,
+  refreshButton
 }: {
-  currentGroups: currentGroupsState
+  currentGroups: currentGroupsState,
+  refreshButton: boolean,
 }) {
   const [linksArray, setLinksArray] = useState([] as Link[]);
 
@@ -30,7 +32,7 @@ export function LinksList({
         .then((data) => {
           setLinksArray(data);
         })
-  }, [currentGroups])
+  }, [currentGroups, refreshButton])
 
   return (
     <div>
