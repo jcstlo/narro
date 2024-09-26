@@ -63,15 +63,9 @@ export default function Page({
     )
   })
 
-  return (
-    <div>
-    <AppShellNavbar p="md">
-      <GroupsList
-        setCurrentGroups={setCurrentGroups}
-        currentGroups={currentGroups}
-      />
-    </AppShellNavbar>
-    <AppShellMain>
+  let addBookmarkButtonForm: JSX.Element = <></>;
+  if (currentSpaceId !== 0) {
+    addBookmarkButtonForm = (
       <div className="border-b">
         <button
           className="border border-black px-2 py-1"
@@ -118,6 +112,19 @@ export default function Page({
           </form>
         </Modal>
       </div>
+    )
+  }
+
+  return (
+    <div>
+    <AppShellNavbar p="md">
+      <GroupsList
+        setCurrentGroups={setCurrentGroups}
+        currentGroups={currentGroups}
+      />
+    </AppShellNavbar>
+    <AppShellMain>
+      {addBookmarkButtonForm}
       <LinksList currentGroups={currentGroups} />
     </AppShellMain>
     </div>
