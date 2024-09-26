@@ -6,10 +6,12 @@ import { currentGroupsState } from "./space/[spaceButtonId]/page";
 
 export function LinksList({
   currentGroups,
-  refreshButton
+  refreshButton,
+  sortOrder,
 }: {
   currentGroups: currentGroupsState,
   refreshButton: boolean,
+  sortOrder: string,
 }) {
   const [linksArray, setLinksArray] = useState([] as Link[]);
 
@@ -23,6 +25,7 @@ export function LinksList({
   useEffect(() => {
       const obj = {
         groups: groupIds,
+        sortOrder: sortOrder,
       };
       fetch("/api/query/links", {
         method: "POST",
@@ -32,7 +35,7 @@ export function LinksList({
         .then((data) => {
           setLinksArray(data);
         })
-  }, [currentGroups, refreshButton])
+  }, [currentGroups, refreshButton, sortOrder])
 
   return (
     <div>

@@ -8,6 +8,7 @@ import { Group } from "@prisma/client";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal } from "@mantine/core";
 import { createBookmark } from "./actions";
+import { SortButtons } from "./SortButtons";
 
 export interface currentGroupsState {
   groupsList: {
@@ -31,6 +32,7 @@ export default function Page({
   const defaultGroupsState: currentGroupsState = { groupsList: [] }
   const [currentGroups, setCurrentGroups] = useState(defaultGroupsState);
   const [refreshButton, setRefreshButton] = useState(false);
+  const [sortOrder, setSortOrder] = useState("newest");
 
   const [openedModal, { open: openModal, close: closeModal }] = useDisclosure(false);
 
@@ -134,13 +136,17 @@ export default function Page({
         setCurrentGroups={setCurrentGroups}
         currentGroups={currentGroups}
       />
+      <SortButtons
+        sortOrder={sortOrder}
+        setSortOrder={setSortOrder}
+      />
     </AppShellNavbar>
     <AppShellMain>
       <div className="border-b">
         {addBookmarkButtonForm}
         {refreshButtonJSX}
       </div>
-      <LinksList currentGroups={currentGroups} refreshButton={refreshButton}/>
+      <LinksList currentGroups={currentGroups} refreshButton={refreshButton} sortOrder={sortOrder}/>
     </AppShellMain>
     </div>
   );

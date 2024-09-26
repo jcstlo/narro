@@ -3,6 +3,32 @@ import prisma from "../../../lib/db";
 export async function POST(request: Request) {
   const queryParams = await request.json();
   const groups = queryParams.groups as number[];
+  const sortOrder = queryParams.sortOrder as string;
+
+  let orderByQuery = {};
+  switch (sortOrder) {
+    case "newest": {
+      orderByQuery = { createdAt: 'desc', }
+      break;
+    }
+    case "oldest": {
+      orderByQuery = { createdAt: 'asc', }
+      break;
+    }
+    case "atoz": {
+      orderByQuery = { title: 'asc', }
+      break;
+    }
+    case "ztoa": {
+      orderByQuery = { title: 'desc', }
+      break;
+    }
+    default: {
+      // TODO: throw an error
+      orderByQuery = { createdAt: 'desc', }
+      break;
+    }
+  }
 
   const groupOrQuery = groups.map((groupId) => {
     return {
@@ -18,9 +44,7 @@ export async function POST(request: Request) {
     where: {
       OR: groupOrQuery,
     },
-    orderBy: {
-      createdAt: 'desc',
-    }
+    orderBy: orderByQuery,
   });
 
   return new Response(JSON.stringify(allLinks));
