@@ -4,6 +4,7 @@ export async function POST(request: Request) {
   const queryParams = await request.json();
   const groups = queryParams.groups as number[];
   const sortOrder = queryParams.sortOrder as string;
+  const searchQueryTitle = queryParams.searchQueryTitle as string;
 
   let orderByQuery = {};
   switch (sortOrder) {
@@ -43,6 +44,12 @@ export async function POST(request: Request) {
   let allLinks = await prisma.link.findMany({
     where: {
       OR: groupOrQuery,
+      AND: {
+        title: {
+          contains: searchQueryTitle,
+          mode: 'insensitive',
+        }
+      }
     },
     orderBy: orderByQuery,
   });

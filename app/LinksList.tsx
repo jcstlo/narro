@@ -8,10 +8,12 @@ export function LinksList({
   currentGroups,
   refreshButton,
   sortOrder,
+  searchQueryTitle
 }: {
   currentGroups: currentGroupsState,
   refreshButton: boolean,
   sortOrder: string,
+  searchQueryTitle: string,
 }) {
   const [linksArray, setLinksArray] = useState([] as Link[]);
 
@@ -26,6 +28,7 @@ export function LinksList({
       const obj = {
         groups: groupIds,
         sortOrder: sortOrder,
+        searchQueryTitle: searchQueryTitle,
       };
       fetch("/api/query/links", {
         method: "POST",
@@ -35,12 +38,12 @@ export function LinksList({
         .then((data) => {
           setLinksArray(data);
         })
-  }, [currentGroups, refreshButton, sortOrder])
+  }, [currentGroups, refreshButton, sortOrder, searchQueryTitle])
 
   return (
     <div>
         {linksArray.map((link) => {
-          return <p key={link.id}>{link.id}</p>
+          return <p key={link.id}>{link.title}</p>
         })}
     </div>
   )
