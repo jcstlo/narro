@@ -8,12 +8,14 @@ export function LinksList({
   currentGroups,
   refreshButton,
   sortOrder,
-  searchQueryTitle
+  searchQueryTitle,
+  searchQueryURL,
 }: {
   currentGroups: currentGroupsState,
   refreshButton: boolean,
   sortOrder: string,
   searchQueryTitle: string,
+  searchQueryURL: string,
 }) {
   const [linksArray, setLinksArray] = useState([] as Link[]);
 
@@ -29,6 +31,7 @@ export function LinksList({
         groups: groupIds,
         sortOrder: sortOrder,
         searchQueryTitle: searchQueryTitle,
+        searchQueryURL: searchQueryURL,
       };
       fetch("/api/query/links", {
         method: "POST",
@@ -38,7 +41,7 @@ export function LinksList({
         .then((data) => {
           setLinksArray(data);
         })
-  }, [currentGroups, refreshButton, sortOrder, searchQueryTitle])
+  }, [currentGroups, refreshButton, sortOrder, searchQueryTitle, searchQueryURL])
 
   const linkRenderedRows = linksArray.map((link) => {
     return (

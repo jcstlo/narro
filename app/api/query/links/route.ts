@@ -5,6 +5,7 @@ export async function POST(request: Request) {
   const groups = queryParams.groups as number[];
   const sortOrder = queryParams.sortOrder as string;
   const searchQueryTitle = queryParams.searchQueryTitle as string;
+  const searchQueryURL = queryParams.searchQueryURL as string;
 
   let orderByQuery = {};
   switch (sortOrder) {
@@ -48,8 +49,12 @@ export async function POST(request: Request) {
         title: {
           contains: searchQueryTitle,
           mode: 'insensitive',
+        },
+        url: {
+          contains: searchQueryURL,
+          mode: 'insensitive',
         }
-      }
+      },
     },
     orderBy: orderByQuery,
   });

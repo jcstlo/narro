@@ -10,6 +10,7 @@ import { Modal } from "@mantine/core";
 import { createBookmark } from "./actions";
 import { SortButtons } from "./SortButtons";
 import { SearchQueryTitle } from "./SearchQueryTitle";
+import { SearchQueryURL } from "./SearchQueryURL";
 
 export interface currentGroupsState {
   groupsList: {
@@ -35,6 +36,7 @@ export default function Page({
   const [refreshButton, setRefreshButton] = useState(false);
   const [sortOrder, setSortOrder] = useState("newest");
   const [searchQueryTitle, setSearchQueryTitle] = useState("");
+  const [searchQueryURL, setSearchQueryURL] = useState("");
 
   const [openedModal, { open: openModal, close: closeModal }] = useDisclosure(false);
 
@@ -142,6 +144,9 @@ export default function Page({
       <SearchQueryTitle
         setSearchQueryTitle={setSearchQueryTitle}
       />
+      <SearchQueryURL
+        setSearchQueryURL={setSearchQueryURL}
+      />
       <GroupsList
         setCurrentGroups={setCurrentGroups}
         currentGroups={currentGroups}
@@ -161,6 +166,7 @@ export default function Page({
         refreshButton={refreshButton}
         sortOrder={sortOrder}
         searchQueryTitle={searchQueryTitle}
+        searchQueryURL={searchQueryURL}
       />
     </AppShellMain>
     </div>
