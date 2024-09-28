@@ -34,6 +34,7 @@ export function GroupsList({
   const checkboxItems = currentGroups.groupsList.map((group) => {
     return <Checkbox
       className="mb-1"
+      key={String(group.id)}
       value={String(group.id)}
       label={group.name}
       checked={group.checked}

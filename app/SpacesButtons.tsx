@@ -19,7 +19,8 @@ export function SpacesButtons() {
   return (
     <div>
       {spacesArray.map((space) => {
-        return <button 
+        return <button
+          key={space.id}
           className="border border-black px-2 py-2 mx-1"
           onClick={() => {
           router.push(`${space.id}`);

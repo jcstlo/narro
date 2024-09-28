@@ -61,8 +61,13 @@ export default function Page({
 
   const addBookmarkGroupsChecklist = currentGroups.groupsList.map((group) => {
     return (
-      <div>
-        <input type="checkbox" id={String(group.id)} name="selectedGroups" value={String(group.id)}/>
+      <div key={String(group.id)}>
+        <input
+          type="checkbox"
+          id={String(group.id)}
+          name="selectedGroups"
+          value={String(group.id)}
+        />
         <label htmlFor={String(group.id)}>{group.name}</label>
       </div>
     )
