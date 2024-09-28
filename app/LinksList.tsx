@@ -40,11 +40,18 @@ export function LinksList({
         })
   }, [currentGroups, refreshButton, sortOrder, searchQueryTitle])
 
+  const linkRenderedRows = linksArray.map((link) => {
+    return (
+      <div key={link.id} className="py-3 border-y-slate-300 border-b">
+        <p className="font-semibold">{link.title}</p>
+        <p>{link.url}</p>
+      </div>
+    )
+  })
+
   return (
     <div>
-        {linksArray.map((link) => {
-          return <p key={link.id}>{link.title}</p>
-        })}
+        {linkRenderedRows}
     </div>
   )
 }
