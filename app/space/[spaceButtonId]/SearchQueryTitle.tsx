@@ -24,7 +24,7 @@ export function SearchQueryTitle({
         name="searchQueryTitle"
         type="text"
         placeholder="Search title..."
-        className="block w-full rounded-md border border-gray-200 py-2 pl-2 text-sm outline-2 placeholder:text-gray-500 mb-4"
+        className="block w-full rounded-md border border-gray-200 py-2 pl-2 text-sm outline-2 placeholder:text-gray-500 mb-2"
         onChange={onSearchQueryTitleChange}
       />
     </>
