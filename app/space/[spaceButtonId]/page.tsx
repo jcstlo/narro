@@ -70,7 +70,7 @@ export default function Page({
           name="selectedGroups"
           value={String(group.id)}
         />
-        <label htmlFor={String(group.id)}>{group.name}</label>
+        <label htmlFor={String(group.id)} className="ml-2">{group.name}</label>
       </div>
     )
   })
@@ -114,7 +114,7 @@ export default function Page({
             <input type="hidden" name="spaceId" value={currentSpaceId}/>
             <button
             type="submit"
-            className="border border-black px-2 py-1 ml-1 mb-2"
+            className="border border-black px-2 py-1 ml-1 mb-2 mt-4"
             onClick={() => {
               closeModal();
             }}
