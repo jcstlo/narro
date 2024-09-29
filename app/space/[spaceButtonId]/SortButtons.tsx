@@ -14,7 +14,7 @@ export function SortButtons({
   }
 
   return (
-    <>
+    <div className="mt-5">
       <p className="font-bold">Sort by:</p>
       <div className="flex">
         <input
@@ -60,6 +60,6 @@ export function SortButtons({
         />
         <label htmlFor="ztoa" className="ml-1">Z - A</label>
       </div>
-    </>
+    </div>
   )
 }

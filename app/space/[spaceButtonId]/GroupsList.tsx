@@ -46,7 +46,7 @@ export function GroupsList({
 
   return (
     <>
-      <div className="flex">
+      <div className="flex mt-5">
         <button
         className="border border-black px-2 py-1 ml-1 mb-2"
           onClick={() => {
