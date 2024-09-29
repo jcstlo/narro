@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-export default async function Home() {
+export default function Home() {
   const router = useRouter();
 
   return (
@@ -12,7 +12,7 @@ export default async function Home() {
         router.push("/space/0");
       }}
     >
-      Go to "all" space
+    {"Go to \"all\" space"}
     </button>
   );
 }

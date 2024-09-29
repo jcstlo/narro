@@ -9,7 +9,7 @@ export async function createSpace(formData: FormData) {
     name: formData.get('spacename') as string,
   }
 
-  const newSpace = await prisma.space.create({
+  await prisma.space.create({
     data: {
       name: newSpaceFields.name,
     }

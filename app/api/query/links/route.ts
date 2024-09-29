@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     }
   })
 
-  let allLinks = await prisma.link.findMany({
+  const allLinks = await prisma.link.findMany({
     where: {
       OR: groupOrQuery,
       AND: {

@@ -20,7 +20,7 @@ export async function createBookmark(formData: FormData) {
     }
   }
 
-  const newBookmark = await prisma.link.create({
+  await prisma.link.create({
     data: {
       title: newBookmarkFields.name,
       url: newBookmarkFields.url,
@@ -40,7 +40,7 @@ export async function createGroup(formData: FormData) {
     spaceId: formData.get('spaceId') as string,
   }
 
-  const newGroup = await prisma.group.create({
+  await prisma.group.create({
     data: {
       name: newGroupFields.name,
       space: {
