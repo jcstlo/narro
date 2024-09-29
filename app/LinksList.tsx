@@ -45,7 +45,7 @@ export function LinksList({
 
   const linkRenderedRows = linksArray.map((link) => {
     return (
-      <div key={link.id} className="py-3 border-y-slate-300 border-b">
+      <div key={link.id} className="py-3 border-y-slate-300 border-b pl-3">
         <p className="font-semibold">{link.title}</p>
         <p>{link.url}</p>
       </div>

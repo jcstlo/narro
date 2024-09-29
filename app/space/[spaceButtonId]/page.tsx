@@ -80,7 +80,7 @@ export default function Page({
     addBookmarkButtonForm = (
       <>
         <button
-          className="border border-black px-2 py-1"
+          className="border border-black px-2 py-1 ml-2"
           onClick={openModal}
         >
           Add new bookmark
@@ -129,7 +129,7 @@ export default function Page({
 
   const refreshButtonJSX = (
     <button
-      className="border border-black px-2 py-1 ml-2"
+      className="border border-black px-2 py-1 ml-2 my-2"
       onClick={() => {
         setRefreshButton(!refreshButton);
       }}
