@@ -4,6 +4,7 @@ import React from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { AppShell, Group, Burger } from "@mantine/core";
 import { SpacesButtons } from "@/app/SpacesButtons";
+import { NewSpaceButton } from "./NewSpaceButton";
 
 export default function Layout({
   children, // will be a page or nested layout
@@ -22,11 +23,14 @@ export default function Layout({
     }}
   >
     <AppShell.Header>
-      <Group h="100%" px="md">
-        <Burger opened={mobileOpened} onClick={toggleMobile} hiddenFrom="sm" size="sm" />
-        <Burger opened={desktopOpened} onClick={toggleDesktop} visibleFrom="sm" size="sm" />
+      <div className="flex justify-between items-center py-2">
+        <Group h="100%" px="md">
+          <Burger opened={mobileOpened} onClick={toggleMobile} hiddenFrom="sm" size="sm" />
+          <Burger opened={desktopOpened} onClick={toggleDesktop} visibleFrom="sm" size="sm" />
+        </Group>
         <SpacesButtons/>
-      </Group>
+        <NewSpaceButton/>
+      </div>
     </AppShell.Header>
     {children}
   </AppShell>
