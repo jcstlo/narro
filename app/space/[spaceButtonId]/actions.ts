@@ -33,3 +33,21 @@ export async function createBookmark(formData: FormData) {
     }
   })
 }
+
+export async function createGroup(formData: FormData) {
+  const newGroupFields = {
+    name: formData.get('groupname') as string,
+    spaceId: formData.get('spaceId') as string,
+  }
+
+  const newGroup = await prisma.group.create({
+    data: {
+      name: newGroupFields.name,
+      space: {
+        connect: {
+          id: Number(newGroupFields.spaceId),
+        }
+      },
+    }
+  })
+}

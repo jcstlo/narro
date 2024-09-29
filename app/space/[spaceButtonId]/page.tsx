@@ -59,7 +59,7 @@ export default function Page({
         })
         setCurrentGroups({ groupsList: dataWithChecked });
       })
-  }, [])
+  }, [refreshButton])
 
   const addBookmarkGroupsChecklist = currentGroups.groupsList.map((group) => {
     return (
@@ -150,6 +150,7 @@ export default function Page({
       <GroupsList
         setCurrentGroups={setCurrentGroups}
         currentGroups={currentGroups}
+        currentSpaceId={currentSpaceId}
       />
       <SortButtons
         sortOrder={sortOrder}
