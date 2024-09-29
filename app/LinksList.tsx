@@ -44,10 +44,24 @@ export function LinksList({
   }, [currentGroups, refreshButton, sortOrder, searchQueryTitle, searchQueryURL])
 
   const linkRenderedRows = linksArray.map((link) => {
+    let linkurl = "";
+    if (link.url.startsWith("https://") || link.url.startsWith("http://")) {
+      linkurl = link.url;
+    } else {
+      linkurl = `https://${link.url}`;
+    }
+
     return (
       <div key={link.id} className="py-3 border-y-slate-300 border-b pl-3">
         <p className="font-semibold">{link.title}</p>
-        <p>{link.url}</p>
+        <a
+          href={linkurl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline"
+        >
+          {link.url}
+        </a>
       </div>
     )
   })
