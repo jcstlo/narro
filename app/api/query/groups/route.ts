@@ -7,13 +7,20 @@ export async function POST(request: Request) {
   let groupsInSpace;
 
   if (currentSpaceId === 0) {
-    groupsInSpace = await prisma.group.findMany();
+    groupsInSpace = await prisma.group.findMany({
+      orderBy: {
+        name: 'asc',
+      }
+    });
   } else {
     groupsInSpace = await prisma.group.findMany({
       where: {
         space: {
           id: currentSpaceId,
         }
+      },
+      orderBy: {
+        name: 'asc',
       },
     });
   }
