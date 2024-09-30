@@ -38,11 +38,16 @@ export function GroupsList({
   }
 
   const checkboxItems = currentGroups.groupsList.map((group) => {
+    let groupLabel = group.name;
+    if (currentSpaceId == 0) {
+      groupLabel = `${group.spaceName}: ${group.name}`
+    }
+
     return <Checkbox
       className="mb-1"
       key={String(group.id)}
       value={String(group.id)}
-      label={group.name}
+      label={groupLabel}
       checked={group.checked}
       onChange={(event) => {
         updateGroupsList(group.id, event.currentTarget.checked);

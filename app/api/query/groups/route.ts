@@ -10,7 +10,14 @@ export async function POST(request: Request) {
     groupsInSpace = await prisma.group.findMany({
       orderBy: {
         name: 'asc',
-      }
+      },
+      include: {
+        space: {
+          select: {
+            name: true,
+          },
+        },
+      },
     });
   } else {
     groupsInSpace = await prisma.group.findMany({
@@ -21,6 +28,13 @@ export async function POST(request: Request) {
       },
       orderBy: {
         name: 'asc',
+      },
+      include: {
+        space: {
+          select: {
+            name: true,
+          },
+        },
       },
     });
   }

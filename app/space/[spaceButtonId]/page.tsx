@@ -17,9 +17,20 @@ export interface currentGroupsState {
     id: number;
     name: string;
     createdAt: Date;
+    spaceName: string;
     spaceId: number;
     checked: boolean;
   }[];
+}
+
+export interface GroupQueryData {
+  id: number;
+  name: string;
+  createdAt: Date;
+  spaceId: number;
+  space: {
+    name: string;
+  }
 }
 
 export default function Page({
@@ -47,12 +58,13 @@ export default function Page({
       body: JSON.stringify(obj),
     })
       .then((res) => res.json())
-      .then((data: Group[]) => {
+      .then((data: GroupQueryData[]) => {
         const dataWithChecked = data.map((group) => {
           return {
             id: group.id,
             name: group.name,
             createdAt: group.createdAt,
+            spaceName: group.space.name,
             spaceId: group.spaceId,
             checked: true,
           }
