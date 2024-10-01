@@ -4,7 +4,6 @@ import { LinksList } from "@/app/LinksList";
 import { AppShellMain, AppShellNavbar } from "@mantine/core";
 import { useState, useEffect } from "react";
 import { GroupsList } from "./GroupsList";
-import { Group } from "@prisma/client";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal } from "@mantine/core";
 import { createBookmark } from "./actions";
@@ -75,7 +74,7 @@ export default function Page({
 
   const addBookmarkGroupsChecklist = currentGroups.groupsList.map((group) => {
     if (group.name === "Unsorted") {
-      return <input type="hidden" name="unsortedGroupId" value={group.id} />
+      return <input type="hidden" name="unsortedGroupId" key={group.id} value={group.id} />
     }
 
     return (
