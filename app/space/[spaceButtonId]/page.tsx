@@ -74,6 +74,10 @@ export default function Page({
   }, [refreshButton])
 
   const addBookmarkGroupsChecklist = currentGroups.groupsList.map((group) => {
+    if (group.name === "Unsorted") {
+      return <input type="hidden" name="unsortedGroupId" value={group.id} />
+    }
+
     return (
       <div key={String(group.id)}>
         <input

@@ -12,6 +12,11 @@ export async function createSpace(formData: FormData) {
   await prisma.space.create({
     data: {
       name: newSpaceFields.name,
+      groups: {
+        create: {
+          name: 'Unsorted',
+        }
+      }
     }
   })
 

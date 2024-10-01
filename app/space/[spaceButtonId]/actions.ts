@@ -8,6 +8,7 @@ export async function createBookmark(formData: FormData) {
     url: formData.get('linkurl') as string,
     spaceId: formData.get('spaceId') as string,
     selectedGroups: formData.getAll('selectedGroups') as string[],
+    unsortedGroupId: formData.get('unsortedGroupId') as string,
   }
 
   let connectGroups = {};
@@ -17,6 +18,12 @@ export async function createBookmark(formData: FormData) {
     })
     connectGroups = {
       connect: groupsArray,
+    }
+  } else {
+    connectGroups = {
+      connect: {
+        id: Number(newBookmarkFields.unsortedGroupId),
+      },
     }
   }
 
