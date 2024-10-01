@@ -27,7 +27,7 @@ model Space {
   name      String
   createdAt DateTime @default(now())
   links     Link[]
-  Group     Group[]
+  groups    Group[]
 }
 
 model Group {
