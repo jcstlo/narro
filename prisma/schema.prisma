@@ -18,7 +18,6 @@ model Link {
   title     String
   url       String
   createdAt DateTime @default(now())
-  spaces    Space[]
   groups    Group[]
 }
 
@@ -26,7 +25,6 @@ model Space {
   id        Int      @id @default(autoincrement())
   name      String   @unique
   createdAt DateTime @default(now())
-  links     Link[]
   groups    Group[]
 }
 

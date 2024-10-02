@@ -44,11 +44,6 @@ async function main() {
       data: {
         title: link.title,
         url: link.url,
-        spaces: {
-          connect: {
-            id: newSpaceA.id,
-          }
-        },
       },
     });
 
@@ -60,11 +55,6 @@ async function main() {
       data: {
         title: link.title,
         url: link.url,
-        spaces: {
-          connect: {
-            id: newSpaceB.id,
-          }
-        },
       },
     });
 

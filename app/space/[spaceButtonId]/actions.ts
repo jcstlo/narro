@@ -31,11 +31,6 @@ export async function createBookmark(formData: FormData) {
     data: {
       title: newBookmarkFields.name,
       url: newBookmarkFields.url,
-      spaces: {
-        connect: {
-          id: Number(newBookmarkFields.spaceId),
-        }
-      },
       groups: connectGroups,
     }
   })
