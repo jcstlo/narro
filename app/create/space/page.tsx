@@ -33,7 +33,11 @@ export default function Page() {
           className="block rounded-md border border-gray-400 py-2 pl-2 text-sm outline-2 placeholder:text-gray-500 mb-4 w-[400px]"
         />
         <button
+          type="button"
           className="border border-black px-2 py-1 ml-1 mb-2"
+          onClick={() => {
+            router.push("/space/0");
+          }}
         >
           Cancel
         </button>
