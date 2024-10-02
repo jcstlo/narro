@@ -58,7 +58,7 @@ export async function createGroup(formData: FormData) {
         },
       }
     })
-  } catch (err) {
+  } catch (_err) {
     console.log('This group name already exists. Please use a different name.')
     return {
       error: "This group name already exists. Please use a different name."

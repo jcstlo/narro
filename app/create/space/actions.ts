@@ -20,7 +20,7 @@ export async function createSpace(formData: FormData) {
         }
       }
     })
-  } catch (err) {
+  } catch (_err) {
     console.log('This space name already exists. Please use a different name.')
     return {
       error: "This space name already exists. Please use a different name."
