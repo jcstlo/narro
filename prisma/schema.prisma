@@ -24,7 +24,7 @@ model Link {
 
 model Space {
   id        Int      @id @default(autoincrement())
-  name      String
+  name      String   @unique
   createdAt DateTime @default(now())
   links     Link[]
   groups    Group[]
@@ -32,7 +32,7 @@ model Space {
 
 model Group {
   id        Int      @id @default(autoincrement())
-  name      String
+  name      String   @unique
   createdAt DateTime @default(now())
   links     Link[]
   space     Space    @relation(fields: [spaceId], references: [id])

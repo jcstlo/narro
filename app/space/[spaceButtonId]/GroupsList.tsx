@@ -39,8 +39,15 @@ export function GroupsList({
 
   const checkboxItems = currentGroups.groupsList.map((group) => {
     let groupLabel = group.name;
-    if (currentSpaceId == 0) {
-      groupLabel = `${group.spaceName}: ${group.name}`
+
+    // format unsorted group name before showing it to user
+    if (group.name === `_Unsorted_ ${group.spaceName}`) {
+      groupLabel = "Unsorted";
+    }
+
+    // prepend space name if in 'all' space
+    if (currentSpaceId === 0) {
+      groupLabel = `${group.spaceName}: ${groupLabel}`
     }
 
     return <Checkbox

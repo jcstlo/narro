@@ -14,7 +14,7 @@ export async function createSpace(formData: FormData) {
       name: newSpaceFields.name,
       groups: {
         create: {
-          name: 'Unsorted',
+          name: `_Unsorted_ ${newSpaceFields.name}`,
         }
       }
     }

@@ -5,12 +5,22 @@ async function main() {
   const newSpaceA = await prisma.space.create({
     data: {
       name: "Space A",
+      groups: {
+        create: {
+          name: '_Unsorted_ Space A',
+        }
+      }
     }
   });
 
   const newSpaceB = await prisma.space.create({
     data: {
       name: "Space B",
+      groups: {
+        create: {
+          name: '_Unsorted_ Space B',
+        }
+      }
     }
   });
 
