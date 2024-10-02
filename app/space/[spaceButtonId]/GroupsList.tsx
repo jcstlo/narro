@@ -5,6 +5,7 @@ import { Dispatch, SetStateAction } from "react";
 import { currentGroupsState } from "./page";
 import { useDisclosure } from "@mantine/hooks";
 import { createGroup } from "./actions";
+import { notifications } from "@mantine/notifications";
 
 export function GroupsList({
   currentGroups,
@@ -62,6 +63,18 @@ export function GroupsList({
     />
   })
 
+  async function createGroupWrapper(formData: FormData) {
+    const result = await createGroup(formData);
+    if (result?.error) {
+      notifications.show({
+        title: 'Error',
+        message: result.error,
+        color: 'red',
+        position: 'top-center',
+      })
+    }
+  }
+
   let addNewGroupButtonForm: JSX.Element = <></>
   if (currentSpaceId !== 0) {
     addNewGroupButtonForm = (
@@ -78,7 +91,7 @@ export function GroupsList({
           title="Add new group"
           centered
         >
-          <form action={createGroup}>
+          <form action={createGroupWrapper}>
             <label htmlFor="groupname">Group name</label>
             <input type="hidden" name="spaceId" value={currentSpaceId}/>
             <input

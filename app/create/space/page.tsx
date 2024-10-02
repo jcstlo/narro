@@ -2,13 +2,28 @@
 
 import { useRouter } from "next/navigation";
 import { createSpace } from "./actions";
+import { notifications } from "@mantine/notifications";
 
 export default function Page() {
   const router = useRouter();
 
+  async function createSpaceWrapper(formData: FormData) {
+    const result = await createSpace(formData);
+    if (result?.error) {
+      notifications.show({
+        title: 'Error',
+        message: result.error,
+        color: 'red',
+        position: 'top-center',
+      })
+    } else {
+      router.push("/space/0");
+    }
+  }
+
   return (
     <div>
-      <form action={createSpace}>
+      <form action={createSpaceWrapper}>
         <label htmlFor="spacename">New space name</label>
         <input
           id="spacename"
@@ -19,9 +34,6 @@ export default function Page() {
         />
         <button
           className="border border-black px-2 py-1 ml-1 mb-2"
-          onClick={() => {
-            router.push("/space/0");
-          }}
         >
           Cancel
         </button>

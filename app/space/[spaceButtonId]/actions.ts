@@ -47,14 +47,21 @@ export async function createGroup(formData: FormData) {
     spaceId: formData.get('spaceId') as string,
   }
 
-  await prisma.group.create({
-    data: {
-      name: newGroupFields.name,
-      space: {
-        connect: {
-          id: Number(newGroupFields.spaceId),
-        }
-      },
-    }
-  })
+  try {
+    await prisma.group.create({
+      data: {
+        name: newGroupFields.name,
+        space: {
+          connect: {
+            id: Number(newGroupFields.spaceId),
+          }
+        },
+      }
+    })
+  } catch (err) {
+    console.log('This group name already exists. Please use a different name.')
+    return {
+      error: "This group name already exists. Please use a different name."
+    };
+  }
 }
