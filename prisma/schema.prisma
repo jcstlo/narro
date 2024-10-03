@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Link {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   title     String
   url       String
   createdAt DateTime @default(now())
@@ -22,17 +22,19 @@ model Link {
 }
 
 model Space {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   name      String   @unique
   createdAt DateTime @default(now())
   groups    Group[]
 }
 
 model Group {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
+  id        String   @id @default(uuid())
+  name      String
   createdAt DateTime @default(now())
   links     Link[]
   space     Space    @relation(fields: [spaceId], references: [id])
-  spaceId   Int
+  spaceId   String
+
+  @@unique([name, spaceId])
 }

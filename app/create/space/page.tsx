@@ -17,7 +17,7 @@ export default function Page() {
         position: 'top-center',
       })
     } else {
-      router.push("/space/0");
+      router.push("/space/all");
     }
   }
 
@@ -36,7 +36,7 @@ export default function Page() {
           type="button"
           className="border border-black px-2 py-1 ml-1 mb-2"
           onClick={() => {
-            router.push("/space/0");
+            router.push("/space/all");
           }}
         >
           Cancel

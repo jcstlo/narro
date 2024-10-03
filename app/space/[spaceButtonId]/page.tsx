@@ -13,20 +13,20 @@ import { SearchQueryURL } from "./SearchQueryURL";
 
 export interface currentGroupsState {
   groupsList: {
-    id: number;
+    id: string;
     name: string;
     createdAt: Date;
     spaceName: string;
-    spaceId: number;
+    spaceId: string;
     checked: boolean;
   }[];
 }
 
 export interface GroupQueryData {
-  id: number;
+  id: string;
   name: string;
   createdAt: Date;
-  spaceId: number;
+  spaceId: string;
   space: {
     name: string;
   }
@@ -39,7 +39,7 @@ export default function Page({
     spaceButtonId: string
   }
 }) {
-  const currentSpaceId = Number(params.spaceButtonId);
+  const currentSpaceId = params.spaceButtonId;
 
   const defaultGroupsState: currentGroupsState = { groupsList: [] }
   const [currentGroups, setCurrentGroups] = useState(defaultGroupsState);
@@ -73,7 +73,7 @@ export default function Page({
   }, [refreshButton])
 
   const addBookmarkGroupsChecklist = currentGroups.groupsList.map((group) => {
-    if (group.name === `_Unsorted_ ${group.spaceName}`) {
+    if (group.name === "Unsorted") {
       return <input type="hidden" name="unsortedGroupId" key={group.id} value={group.id} />
     }
 
@@ -91,7 +91,7 @@ export default function Page({
   })
 
   let addBookmarkButtonForm: JSX.Element = <></>;
-  if (currentSpaceId !== 0) {
+  if (currentSpaceId !== "all") {
     addBookmarkButtonForm = (
       <>
         <button

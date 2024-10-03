@@ -2,11 +2,11 @@ import prisma from "../../../lib/db";
 
 export async function POST(request: Request) {
   const queryParams = await request.json();
-  const currentSpaceId = Number(queryParams.currentSpaceId);
+  const currentSpaceId = queryParams.currentSpaceId;
 
   let groupsInSpace;
 
-  if (currentSpaceId === 0) {
+  if (currentSpaceId === "all") {
     groupsInSpace = await prisma.group.findMany({
       orderBy: {
         name: 'asc',

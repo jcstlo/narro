@@ -14,7 +14,7 @@ export function GroupsList({
 }: {
   currentGroups: currentGroupsState,
   setCurrentGroups: Dispatch<SetStateAction<currentGroupsState>>,
-  currentSpaceId: number,
+  currentSpaceId: string,
 }) {
 
   const [openedModal, { open: openModal, close: closeModal }] = useDisclosure(false);
@@ -27,7 +27,7 @@ export function GroupsList({
     setCurrentGroups({ groupsList: modified });
   }
 
-  function updateGroupsList(groupId: number, checked: boolean) {
+  function updateGroupsList(groupId: string, checked: boolean) {
     const copyCurrentGroups = [...currentGroups.groupsList];
     for (let i = 0; i < copyCurrentGroups.length; i++) {
       if (groupId === copyCurrentGroups[i].id) {
@@ -41,13 +41,8 @@ export function GroupsList({
   const checkboxItems = currentGroups.groupsList.map((group) => {
     let groupLabel = group.name;
 
-    // format unsorted group name before showing it to user
-    if (group.name === `_Unsorted_ ${group.spaceName}`) {
-      groupLabel = "Unsorted";
-    }
-
     // prepend space name if in 'all' space
-    if (currentSpaceId === 0) {
+    if (currentSpaceId === "all") {
       groupLabel = `${group.spaceName}: ${groupLabel}`
     }
 
@@ -76,7 +71,7 @@ export function GroupsList({
   }
 
   let addNewGroupButtonForm: JSX.Element = <></>
-  if (currentSpaceId !== 0) {
+  if (currentSpaceId !== "all") {
     addNewGroupButtonForm = (
       <div>
         <button

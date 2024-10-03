@@ -2,22 +2,22 @@ import prisma from "@/app/lib/db";
 import { NextRequest } from "next/server";
 
 interface linkJSONObject {
-  id: number;
+  id: string;
   title: string;
   url: string;
   groups: {
-    id: number;
+    id: string;
   }[];
 }
 
 interface groupJSONObject {
-  id: number;
+  id: string;
   name: string;
-  spaceId: number;
+  spaceId: string;
 }
 
 interface spaceJSONObject {
-  id: number;
+  id: string;
   name: string;
 }
 

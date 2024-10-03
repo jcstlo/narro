@@ -7,7 +7,7 @@ async function main() {
       name: "Space A",
       groups: {
         create: {
-          name: '_Unsorted_ Space A',
+          name: 'Unsorted',
         }
       }
     }
@@ -18,7 +18,7 @@ async function main() {
       name: "Space B",
       groups: {
         create: {
-          name: '_Unsorted_ Space B',
+          name: 'Unsorted',
         }
       }
     }

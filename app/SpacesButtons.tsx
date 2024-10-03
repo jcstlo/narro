@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 function getCurrentSpaceId(pathname: string) {
   const splitPath = pathname.split("/");
   const currentSpaceId = splitPath[2];
-  return Number(currentSpaceId);
+  return currentSpaceId;
 }
 
 export function SpacesButtons() {
@@ -25,7 +25,7 @@ export function SpacesButtons() {
   }, [])
 
   let allSpaceTailwindClasses = "border border-black px-2 py-2 mx-1"
-  if (currentSpaceId === 0) {
+  if (currentSpaceId === "all") {
     allSpaceTailwindClasses += " underline font-bold"
   }
 
@@ -50,7 +50,7 @@ export function SpacesButtons() {
       <button
         className={allSpaceTailwindClasses}
         onClick={() => {
-          router.push(`0`);
+          router.push(`all`);
         }}
       >
         all

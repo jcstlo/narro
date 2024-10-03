@@ -15,7 +15,7 @@ export async function createSpace(formData: FormData) {
         name: newSpaceFields.name,
         groups: {
           create: {
-            name: `_Unsorted_ ${newSpaceFields.name}`,
+            name: `Unsorted`,
           }
         }
       }
@@ -28,6 +28,6 @@ export async function createSpace(formData: FormData) {
   }
 
 
-  revalidatePath('/space/0');
-  redirect('/space/0');
+  revalidatePath('/space/all');
+  redirect('/space/all');
 }

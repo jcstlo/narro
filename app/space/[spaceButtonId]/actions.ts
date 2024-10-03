@@ -14,7 +14,7 @@ export async function createBookmark(formData: FormData) {
   let connectGroups = {};
   if (newBookmarkFields.selectedGroups.length > 0) {
     const groupsArray = newBookmarkFields.selectedGroups.map((group) => {
-      return { id: Number(group) }
+      return { id: group }
     })
     connectGroups = {
       connect: groupsArray,
@@ -22,7 +22,7 @@ export async function createBookmark(formData: FormData) {
   } else {
     connectGroups = {
       connect: {
-        id: Number(newBookmarkFields.unsortedGroupId),
+        id: newBookmarkFields.unsortedGroupId,
       },
     }
   }
@@ -48,7 +48,7 @@ export async function createGroup(formData: FormData) {
         name: newGroupFields.name,
         space: {
           connect: {
-            id: Number(newGroupFields.spaceId),
+            id: newGroupFields.spaceId,
           }
         },
       }
