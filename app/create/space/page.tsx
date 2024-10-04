@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { createSpace } from "./actions";
 import { notifications } from "@mantine/notifications";
+import { buttonBase } from "@/app/lib/styles";
 
 export default function Page() {
   const router = useRouter();
@@ -22,7 +23,7 @@ export default function Page() {
   }
 
   return (
-    <div>
+    <div className="ml-4 mt-3">
       <form action={createSpaceWrapper}>
         <label htmlFor="spacename">New space name</label>
         <input
@@ -34,7 +35,7 @@ export default function Page() {
         />
         <button
           type="button"
-          className="border border-black px-2 py-1 ml-1 mb-2"
+          className={buttonBase}
           onClick={() => {
             router.push("/space/all");
           }}
@@ -43,7 +44,7 @@ export default function Page() {
         </button>
         <button
           type="submit"
-          className="border border-black px-2 py-1 ml-1 mb-2"
+          className={buttonBase}
         >
           Create
         </button>

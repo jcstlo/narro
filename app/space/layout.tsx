@@ -23,7 +23,7 @@ export default function Layout({
     }}
   >
     <AppShell.Header>
-      <div className="flex justify-between items-center py-2">
+      <div className="flex justify-between items-center py-3">
         <Group h="100%" px="md">
           <Burger opened={mobileOpened} onClick={toggleMobile} hiddenFrom="sm" size="sm" />
           <Burger opened={desktopOpened} onClick={toggleDesktop} visibleFrom="sm" size="sm" />

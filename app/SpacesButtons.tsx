@@ -1,6 +1,7 @@
 import { Space } from "@prisma/client";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { buttonBase } from "./lib/styles";
 
 function getCurrentSpaceId(pathname: string) {
   const splitPath = pathname.split("/");
@@ -24,17 +25,17 @@ export function SpacesButtons() {
       })
   }, [])
 
-  let allSpaceTailwindClasses = "border border-black px-2 py-2 mx-1"
+  let allSpaceTailwindClasses = buttonBase;
   if (currentSpaceId === "all") {
-    allSpaceTailwindClasses += " underline font-bold"
+    allSpaceTailwindClasses += " font-bold text-slate-700"
   }
 
   return (
     <div>
       {spacesArray.map((space) => {
-        let tailwindClasses = "border border-black px-2 py-2 mx-1"
+        let tailwindClasses = buttonBase;
         if (currentSpaceId === space.id) {
-          tailwindClasses += " underline font-bold"
+          tailwindClasses += " font-bold text-slate-700"
         }
 
         return <button

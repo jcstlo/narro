@@ -6,6 +6,7 @@ import { currentGroupsState } from "./page";
 import { useDisclosure } from "@mantine/hooks";
 import { createGroup } from "./actions";
 import { notifications } from "@mantine/notifications";
+import { buttonBase } from "@/app/lib/styles";
 
 export function GroupsList({
   currentGroups,
@@ -75,7 +76,7 @@ export function GroupsList({
     addNewGroupButtonForm = (
       <div>
         <button
-          className="border border-black w-[150px] py-1 ml-1 mt-2"
+          className={buttonBase + " mt-2"}
           onClick={openModal}
         >
           Create new group
@@ -98,7 +99,7 @@ export function GroupsList({
             />
             <button
               type="submit"
-              className="border border-black px-2 py-1 ml-1 mb-2"
+              className={buttonBase}
               onClick={() => {
                 closeModal();
               }}
@@ -115,7 +116,7 @@ export function GroupsList({
     <>
       <div className="flex mt-5">
         <button
-        className="border border-black px-2 py-1 ml-1 mb-2"
+        className={buttonBase + " ml-1 mb-2"}
           onClick={() => {
             setCheckedAllGroups(true);
           }}
@@ -123,7 +124,7 @@ export function GroupsList({
           Select all
         </button>
         <button
-        className="border border-black px-2 py-1 ml-1 mb-2"
+        className={buttonBase + " ml-1 mb-2"}
           onClick={() => {
             setCheckedAllGroups(false);
           }}

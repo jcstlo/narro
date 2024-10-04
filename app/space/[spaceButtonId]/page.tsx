@@ -10,6 +10,7 @@ import { createBookmark } from "./actions";
 import { SortButtons } from "./SortButtons";
 import { SearchQueryTitle } from "./SearchQueryTitle";
 import { SearchQueryURL } from "./SearchQueryURL";
+import { buttonBase } from "@/app/lib/styles";
 
 export interface currentGroupsState {
   groupsList: {
@@ -95,7 +96,7 @@ export default function Page({
     addBookmarkButtonForm = (
       <>
         <button
-          className="border border-black px-2 py-1 ml-2"
+          className={buttonBase}
           onClick={openModal}
         >
           Add new bookmark
@@ -129,7 +130,7 @@ export default function Page({
             <input type="hidden" name="spaceId" value={currentSpaceId}/>
             <button
             type="submit"
-            className="border border-black px-2 py-1 ml-1 mb-2 mt-4"
+            className={buttonBase + " mt-4"}
             onClick={() => {
               closeModal();
             }}
@@ -144,7 +145,7 @@ export default function Page({
 
   const refreshButtonJSX = (
     <button
-      className="border border-black px-2 py-1 ml-2 my-2"
+      className={buttonBase + " my-2"}
       onClick={() => {
         setRefreshButton(!refreshButton);
       }}
