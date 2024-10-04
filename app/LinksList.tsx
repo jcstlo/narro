@@ -19,7 +19,7 @@ export function LinksList({
 }) {
   const [linksArray, setLinksArray] = useState([] as Link[]);
 
-  const groupIds: number[] = [];
+  const groupIds: string[] = [];
   for (let i = 0; i < currentGroups.groupsList.length; i++) {
     if (currentGroups.groupsList[i].checked) {
       groupIds.push(currentGroups.groupsList[i].id);

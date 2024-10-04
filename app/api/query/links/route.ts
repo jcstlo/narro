@@ -2,7 +2,7 @@ import prisma from "../../../lib/db";
 
 export async function POST(request: Request) {
   const queryParams = await request.json();
-  const groups = queryParams.groups as number[];
+  const groups = queryParams.groups as string[];
   const sortOrder = queryParams.sortOrder as string;
   const searchQueryTitle = queryParams.searchQueryTitle as string;
   const searchQueryURL = queryParams.searchQueryURL as string;
