@@ -1,18 +1,16 @@
 "use client";
 
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
   const router = useRouter();
 
+  useEffect(() => {
+    router.push('/space/all');
+  }, [router]);
+
   return (
-    <button
-      className="border border-black px-2 py-2 mx-1"
-      onClick={() => {
-        router.push("/space/all");
-      }}
-    >
-    {"Go to \"all\" space"}
-    </button>
+    <p></p>
   );
 }
