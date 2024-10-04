@@ -113,10 +113,11 @@ export function GroupsList({
   }
 
   return (
-    <>
-      <div className="flex mt-5">
+    <div className="mt-3">
+      <p className="font-bold mb-1">Groups:</p>
+      <div className="flex">
         <button
-        className={buttonBase + " ml-1 mb-2"}
+        className={buttonBase + " ml-1 mb-3"}
           onClick={() => {
             setCheckedAllGroups(true);
           }}
@@ -124,7 +125,7 @@ export function GroupsList({
           Select all
         </button>
         <button
-        className={buttonBase + " ml-1 mb-2"}
+        className={buttonBase + " ml-1 mb-3"}
           onClick={() => {
             setCheckedAllGroups(false);
           }}
@@ -134,6 +135,6 @@ export function GroupsList({
       </div>
       {checkboxItems}
       {addNewGroupButtonForm}
-    </>
+    </div>
   )
 }
