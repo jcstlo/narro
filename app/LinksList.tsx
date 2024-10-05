@@ -8,12 +8,14 @@ export function LinksList({
   currentGroups,
   refreshButton,
   sortOrder,
+  timeCreatedFilter,
   searchQueryTitle,
   searchQueryURL,
 }: {
   currentGroups: currentGroupsState,
   refreshButton: boolean,
   sortOrder: string,
+  timeCreatedFilter: string,
   searchQueryTitle: string,
   searchQueryURL: string,
 }) {
@@ -30,6 +32,7 @@ export function LinksList({
       const obj = {
         groups: groupIds,
         sortOrder: sortOrder,
+        timeCreatedFilter: timeCreatedFilter,
         searchQueryTitle: searchQueryTitle,
         searchQueryURL: searchQueryURL,
       };
@@ -41,7 +44,12 @@ export function LinksList({
         .then((data) => {
           setLinksArray(data);
         })
-  }, [currentGroups, refreshButton, sortOrder, searchQueryTitle, searchQueryURL])
+  }, [currentGroups,
+      refreshButton,
+      sortOrder,
+      timeCreatedFilter,
+      searchQueryTitle,
+      searchQueryURL])
 
   const linkRenderedRows = linksArray.map((link) => {
     let linkurl = "";

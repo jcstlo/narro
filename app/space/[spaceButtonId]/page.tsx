@@ -47,6 +47,7 @@ export default function Page({
   const [currentGroups, setCurrentGroups] = useState(defaultGroupsState);
   const [refreshButton, setRefreshButton] = useState(false);
   const [sortOrder, setSortOrder] = useState("newest");
+  const [timeCreatedFilter, setTimeCreatedFilter] = useState("all");
   const [searchQueryTitle, setSearchQueryTitle] = useState("");
   const [searchQueryURL, setSearchQueryURL] = useState("");
 
@@ -175,6 +176,8 @@ export default function Page({
           setSortOrder={setSortOrder}
         />
         <FilterTimeCreated
+          timeCreatedFilter={timeCreatedFilter}
+          setTimeCreatedFilter={setTimeCreatedFilter}
         />
       </AppShellSection>
     </AppShellNavbar>
@@ -187,6 +190,7 @@ export default function Page({
         currentGroups={currentGroups}
         refreshButton={refreshButton}
         sortOrder={sortOrder}
+        timeCreatedFilter={timeCreatedFilter}
         searchQueryTitle={searchQueryTitle}
         searchQueryURL={searchQueryURL}
       />
