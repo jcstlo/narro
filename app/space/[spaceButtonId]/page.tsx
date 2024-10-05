@@ -11,6 +11,7 @@ import { SortButtons } from "./SortButtons";
 import { SearchQueryTitle } from "./SearchQueryTitle";
 import { SearchQueryURL } from "./SearchQueryURL";
 import { buttonBase } from "@/app/lib/styles";
+import { FilterTimeCreated } from "./FilterTimeCreated";
 
 export interface currentGroupsState {
   groupsList: {
@@ -171,6 +172,8 @@ export default function Page({
       <SortButtons
         sortOrder={sortOrder}
         setSortOrder={setSortOrder}
+      />
+      <FilterTimeCreated
       />
     </AppShellNavbar>
     <AppShellMain>
