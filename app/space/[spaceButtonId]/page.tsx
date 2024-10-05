@@ -1,7 +1,7 @@
 "use client";
 
 import { LinksList } from "@/app/LinksList";
-import { AppShellMain, AppShellNavbar } from "@mantine/core";
+import { AppShellMain, AppShellNavbar, AppShellSection, ScrollArea } from "@mantine/core";
 import { useState, useEffect } from "react";
 import { GroupsList } from "./GroupsList";
 import { useDisclosure } from "@mantine/hooks";
@@ -158,23 +158,25 @@ export default function Page({
   return (
     <div>
     <AppShellNavbar p="md">
-      <SearchQueryTitle
-        setSearchQueryTitle={setSearchQueryTitle}
-      />
-      <SearchQueryURL
-        setSearchQueryURL={setSearchQueryURL}
-      />
-      <GroupsList
-        setCurrentGroups={setCurrentGroups}
-        currentGroups={currentGroups}
-        currentSpaceId={currentSpaceId}
-      />
-      <SortButtons
-        sortOrder={sortOrder}
-        setSortOrder={setSortOrder}
-      />
-      <FilterTimeCreated
-      />
+      <AppShellSection component={ScrollArea}>
+        <SearchQueryTitle
+          setSearchQueryTitle={setSearchQueryTitle}
+        />
+        <SearchQueryURL
+          setSearchQueryURL={setSearchQueryURL}
+        />
+        <GroupsList
+          setCurrentGroups={setCurrentGroups}
+          currentGroups={currentGroups}
+          currentSpaceId={currentSpaceId}
+        />
+        <SortButtons
+          sortOrder={sortOrder}
+          setSortOrder={setSortOrder}
+        />
+        <FilterTimeCreated
+        />
+      </AppShellSection>
     </AppShellNavbar>
     <AppShellMain>
       <div className="border-b">
