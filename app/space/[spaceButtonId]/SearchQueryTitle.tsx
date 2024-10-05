@@ -20,6 +20,7 @@ export function SearchQueryTitle({
 
   return (
     <>
+      <p className="font-bold mb-1">Search:</p>
       <input
         name="searchQueryTitle"
         type="text"
