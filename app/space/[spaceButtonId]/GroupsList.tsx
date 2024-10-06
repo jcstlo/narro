@@ -1,12 +1,13 @@
 "use client";
 
 import { Checkbox, Modal } from "@mantine/core"
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, MouseEventHandler } from "react";
 import { currentGroupsState } from "./page";
 import { useDisclosure } from "@mantine/hooks";
 import { createGroup } from "./actions";
 import { notifications } from "@mantine/notifications";
 import { buttonBase } from "@/app/lib/styles";
+import { demoNotification } from "@/app/lib/demo";
 
 export function GroupsList({
   currentGroups,
@@ -71,13 +72,22 @@ export function GroupsList({
     }
   }
 
+  const demoFlag = (process.env.NEXT_PUBLIC_DEMO === "true");
+  let addNewGroupOnClickHandler: MouseEventHandler<HTMLButtonElement>;
+  if (demoFlag) {
+    addNewGroupOnClickHandler = demoNotification;
+  } else {
+    addNewGroupOnClickHandler = openModal;
+  }
+
+
   let addNewGroupButtonForm: JSX.Element = <></>
   if (currentSpaceId !== "all") {
     addNewGroupButtonForm = (
       <div>
         <button
           className={buttonBase + " mt-2"}
-          onClick={openModal}
+          onClick={addNewGroupOnClickHandler}
         >
           Create new group
         </button>

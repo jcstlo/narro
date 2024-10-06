@@ -2,7 +2,7 @@
 
 import { LinksList } from "@/app/LinksList";
 import { AppShellMain, AppShellNavbar, AppShellSection, ScrollArea } from "@mantine/core";
-import { useState, useEffect } from "react";
+import { useState, useEffect, MouseEventHandler } from "react";
 import { GroupsList } from "./GroupsList";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal } from "@mantine/core";
@@ -12,6 +12,7 @@ import { SearchQueryTitle } from "./SearchQueryTitle";
 import { SearchQueryURL } from "./SearchQueryURL";
 import { buttonBase } from "@/app/lib/styles";
 import { FilterTimeCreated } from "./FilterTimeCreated";
+import { demoNotification } from "@/app/lib/demo";
 
 export interface currentGroupsState {
   groupsList: {
@@ -93,13 +94,22 @@ export default function Page({
     )
   })
 
+  const demoFlag = (process.env.NEXT_PUBLIC_DEMO === "true");
+  let addBookmarkOnClickHandler: MouseEventHandler<HTMLButtonElement>;
+  if (demoFlag) {
+    addBookmarkOnClickHandler = demoNotification;
+  } else {
+    addBookmarkOnClickHandler = openModal;
+  }
+
+
   let addBookmarkButtonForm: JSX.Element = <></>;
   if (currentSpaceId !== "all") {
     addBookmarkButtonForm = (
       <>
         <button
           className={buttonBase}
-          onClick={openModal}
+          onClick={addBookmarkOnClickHandler}
         >
           Add new bookmark
         </button>
