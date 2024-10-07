@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { createSpace } from "./actions";
 import { notifications } from "@mantine/notifications";
 import { buttonBase } from "@/app/lib/styles";
+import { demoNotification } from "@/app/lib/demo";
 
 export default function Page() {
   const router = useRouter();
@@ -20,6 +21,27 @@ export default function Page() {
     } else {
       router.push("/space/all");
     }
+  }
+
+  const demoFlag = (process.env.NEXT_PUBLIC_DEMO === "true");
+  let createButton: JSX.Element = (
+    <button
+      type="submit"
+      className={buttonBase}
+    >
+      Create
+    </button>
+  )
+  if (demoFlag) {
+    createButton = (
+      <button
+        type="button"
+        className={buttonBase}
+        onClick={demoNotification}
+      >
+        Create
+      </button>
+    )
   }
 
   return (
@@ -42,12 +64,7 @@ export default function Page() {
         >
           Cancel
         </button>
-        <button
-          type="submit"
-          className={buttonBase}
-        >
-          Create
-        </button>
+        {createButton}
       </form>
     </div>
   )
