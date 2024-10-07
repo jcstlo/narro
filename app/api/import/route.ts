@@ -26,6 +26,12 @@ export async function POST(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const importQuery = searchParams.get('importQuery'); // expecting /api/import?importQuery=...
 
+  // prevent adding any links/groups/spaces if this is the demo version
+  const demoFlag = (process.env.NEXT_PUBLIC_DEMO === "true");
+  if (demoFlag) {
+    return new Response("Cannot access this API route in the demo!", { status: 500 });
+  }
+
   switch (importQuery) {
     case "import_spaces":
       const importSpaces = importData as spaceJSONObject[];
