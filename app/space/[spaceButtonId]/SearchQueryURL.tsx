@@ -24,7 +24,7 @@ export function SearchQueryURL({
         name="SearchQueryURL"
         type="text"
         placeholder="Search URL..."
-        className="block w-full rounded-md border border-gray-200 py-2 pl-2 text-sm outline-2 placeholder:text-gray-500 mb-4"
+        className="block w-[95%] rounded-md border border-gray-200 py-2 pl-2 text-sm outline-2 placeholder:text-gray-500 mb-4"
         onChange={onSearchQueryURLChange}
       />
     </>
