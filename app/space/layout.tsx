@@ -23,7 +23,8 @@ export default function Layout({
     headerHeight = 85;
     demoNotice = (
       <div className="border border-red-400 bg-red-200 flex justify-center">
-        <p className="font-medium text-gray-900">You are currently using the demo version of narro.</p>
+        <p className="font-medium text-gray-900 hidden md:block">You are currently using the demo version of narro.</p>
+        <p className="font-medium text-gray-900 block md:hidden">(Demo)</p>
         <a
           className="font-medium text-blue-600 ml-2 underline"
           href="https://github.com/jcstlo/narro"
